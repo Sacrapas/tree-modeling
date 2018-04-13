@@ -1,6 +1,28 @@
-div {
-  padding: 30px;
+:host {
+  margin: 30px;
 
-  display: flex;
+  div {
+    min-height: 50px;
+    min-width: 150px;
 
+    border: 2px solid black;
+    outline: none;
+    cursor: pointer;
+    background-color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    input {
+      height: 12px;
+      margin-top: -10px;
+
+      outline: none;
+
+      text-align: center;
+    }
+  }
 }
+
+
