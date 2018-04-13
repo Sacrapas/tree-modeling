@@ -1,7 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 
 @Component({
-  selector: 'my-app',
+  selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
@@ -15,9 +15,11 @@ export class AppComponent {
     links: [3]
   },
   {
+    id: 1,
     name: 'мозг',
     children: [
       {
+        id: 2,
         name: 'память',
         children: [
           {
@@ -51,6 +53,8 @@ export class AppComponent {
 
   @HostListener('click')
   public click(): void {
-    this.cells.push(1);
+    this.cells.push({
+      name: 'тест'
+    });
   }
 }

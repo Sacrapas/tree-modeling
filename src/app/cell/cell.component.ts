@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, HostListener } from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-cell',
@@ -7,15 +7,29 @@ import { Component, OnInit, Input, HostListener } from '@angular/core';
 })
 export class CellComponent {
 
-  @Input() name: string;
+  @Input()  children:     any[];
+  @Input()  depth:        number;
+  @Input()  name:         string;
+  @Input()  selfIndex:    number;
 
-  @Input() children: any[];
+  @Output() destroySelf: EventEmitter<number> = new EventEmitter<number>();
 
-  public add(e: Event): void {
-    this.children.push(1);
-    console.log(this.children);
+  public isCollapsed = true;
+
+  public add(): void {
+    this.children.push({name: null});
+    this.isCollapsed = false;
+  }
+
+  public switchCollapse(): void {
+    this.isCollapsed = !this.isCollapsed;
+  }
+
+  public sp(e: Event): void {
     e.stopPropagation();
   }
 
-
+  public destroyChild(i: number): void {
+    this.children = [...this.children.slice(0, i), ...this.children.slice(i + 1, this.children.length)];
+  }
 }

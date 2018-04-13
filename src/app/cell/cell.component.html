@@ -1,5 +1,22 @@
-<div (click)="add($event)">
-  <input type="text" [value]="name">
+<div (click)   = 'add(); sp($event)'
+     [ngStyle] = "{borderColor: 'rgba(0, 0, 0, ' + (depth + 4) / 10 + ')'}"
+     class     = 'root'>
 
-  <app-cell *ngFor="let cell of children" [name]="cell.name" [children]="cell.children"></app-cell>
+  <input type="text" (click)="$event.stopPropagation()" [value]="name">
+
+  <button (click)="destroySelf.emit(selfIndex); sp($event)">X</button>
+  <button
+    *ngIf="children"
+    (click)="switchCollapse(); sp($event)"> {{ isCollapsed ? '+' : '-'}}</button>
+
+  <div *ngIf="!isCollapsed">
+    <app-cell *ngFor        = 'let cell of children; let i = index'
+              [name]        = 'cell.name'
+              [children]    = 'cell.children'
+              [depth]       = 'depth + 1'
+              [selfIndex]   = 'i'
+              (destroySelf) = 'destroyChild($event)'>
+    </app-cell>
+  </div>
+
 </div>
