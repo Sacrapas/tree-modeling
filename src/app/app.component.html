@@ -1,5 +1,7 @@
 <div (click)="add($event)">
   <input type="text" [value]="name">
 
-  <app-root *ngFor="let cell of children" [name]="cell.name" [children]="cell.children"></app-root>
+  <ng-container *ngIf="children.length > 0">
+    <app-root *ngFor="let cell of children" [name]="cell.name" [children]="cell.children" [depth] = 'depth + 1' ></app-root>
+  </ng-container>
 </div>

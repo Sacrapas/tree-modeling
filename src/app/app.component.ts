@@ -1,58 +1,26 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {StateService} from './state.service';
+import {isNil} from 'lodash';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnChanges {
 
 
   @Input() name: string;
-
   @Input() children: any[];
+  @Input() depth;
 
+  constructor(public readonly state: StateService) {
+    this.children = state.cells;
+  }
 
-  public cells: any[] = [
-    {
-      id: 0,
-      name: 'сенсоры',
-      links: [3]
-    },
-    {
-      name: 'мозг',
-      children: [
-        {
-          name: 'память',
-          children: [
-            {
-              name: 'текущая',
-              id: 3,
-              links: [4]
-            },
-            {
-              name: 'долговременная',
-              id: 4,
-              links: [3]
-            }
-          ]
-        },
-        {
-          name: 'таблица приоритетов',
-          links: [5]
-        },
-        {
-          name: 'модуль достижения цели',
-          id: 5,
-          links: [6]
-        }
-      ]
-    },
-    {
-      name: 'кнопки',
-      id: 6
-    }
-  ];
+  ngOnChanges(val: SimpleChanges) {
+    this.children = val.children as any;
+  }
 
   public add(e: Event): void {
     this.children.push({
