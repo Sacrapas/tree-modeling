@@ -2,14 +2,14 @@
      [ngStyle] = "{borderColor: 'rgba(0, 0, 0, ' + (depth + 4) / 10 + ')'}"
      class     = 'root'>
 
-  <input type="text" (click)="$event.stopPropagation()" [value]="name">
+  <input type="text" (click)="$event.stopPropagation()" [ngModel]="name" (ngModelChange)="inputChange($event)">
 
   <button (click)="destroySelf.emit(selfIndex); sp($event)">X</button>
   <button
     *ngIf="children"
     (click)="switchCollapse(); sp($event)"> {{ isCollapsed ? '+' : '-'}}</button>
 
-  <div *ngIf="!isCollapsed">
+  <ng-container *ngIf="!isCollapsed">
     <app-cell *ngFor        = 'let cell of children; let i = index'
               [name]        = 'cell.name'
               [children]    = 'cell.children'
@@ -17,6 +17,6 @@
               [selfIndex]   = 'i'
               (destroySelf) = 'destroyChild($event)'>
     </app-cell>
-  </div>
+  </ng-container>
 
 </div>

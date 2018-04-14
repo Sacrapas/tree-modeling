@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -51,8 +51,7 @@ export class AppComponent {
   }
 ];
 
-  @HostListener('click')
-  public click(): void {
+  public add(): void {
     this.cells.push({
       name: 'тест'
     });

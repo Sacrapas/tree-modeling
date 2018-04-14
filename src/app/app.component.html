@@ -1,7 +1,11 @@
-<div>
-  <app-cell *ngFor     = 'let cell of cells; let i = index'
-            [name]     = 'cell.name'
-            [children] = 'cell.children'
-            [depth]    = '0'
-            [selfIndex]= 'i'></app-cell>
+<div (click)="add()">
+  <app-cell *ngFor       = 'let cell of cells; let i = index'
+            [(name)]     = 'cell.name'
+            [(children)] = 'cell.children'
+            [depth]      = '0'
+            [selfIndex]  = 'i'></app-cell>
 </div>
+
+<pre>
+  {{cells | json}}
+</pre>
