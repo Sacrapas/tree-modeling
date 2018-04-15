@@ -16,8 +16,8 @@
 
   <ng-container *ngIf="!isCollapsed || depth === 0">
     <app-cell *ngFor        = 'let cell of children; let i = index'
-              [name]        = 'cell.name'
-              [children]    = 'cell.children'
+              [(name)]      = 'cell.name'
+              [(children)]  = 'cell.children'
               [depth]       = 'depth + 1'
               [selfIndex]   = 'i'
               (destroySelf) = 'destroyChild($event)'>

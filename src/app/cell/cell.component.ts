@@ -1,9 +1,10 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {isNil} from 'lodash';
 
 @Component({
-  selector: 'app-cell',
+  selector:    'app-cell',
   templateUrl: 'cell.component.html',
-  styleUrls: ['cell.component.scss']
+  styleUrls:  ['cell.component.scss']
 })
 export class CellComponent {
 
@@ -12,6 +13,7 @@ export class CellComponent {
   @Input()  selfIndex:   number;
   @Input()  name:        string;
   @Output() nameChange:  EventEmitter<string> = new EventEmitter<string>();
+  @Output() childrenChange: EventEmitter<any[]> = new EventEmitter<any[]>();
   @Output() destroySelf: EventEmitter<number> = new EventEmitter<number>();
 
   public isCollapsed = true;
@@ -21,7 +23,11 @@ export class CellComponent {
   }
 
   public add(): void {
-    this.children.push({name: null});
+    if (isNil(this.children)) {
+      this.children = [];
+    }
+    this.children.push({name: this.depth});
+    this.childrenChange.emit(this.children);
     this.isCollapsed = false;
   }
 
@@ -34,6 +40,6 @@ export class CellComponent {
   }
 
   public destroyChild(i: number): void {
-    this.children = [...this.children.slice(0, i), ...this.children.slice(i + 1, this.children.length)];
+    this.children.splice(i, 1);
   }
 }
