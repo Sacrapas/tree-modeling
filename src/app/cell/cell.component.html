@@ -1,15 +1,20 @@
 <div (click)   = 'add(); sp($event)'
-     [ngStyle] = "{borderColor: 'rgba(0, 0, 0, ' + (depth + 4) / 10 + ')'}"
+     [ngStyle] = "{borderColor: 'rgba(0, 0, 0, ' + (depth > 0 ? (depth + 3) / 10 : 0) + ')'}"
      class     = 'root'>
 
-  <input type="text" (click)="$event.stopPropagation()" [ngModel]="name" (ngModelChange)="inputChange($event)">
+  <input *ngIf="depth > 0" type="text" (click)="$event.stopPropagation()" [ngModel]="name" (ngModelChange)="inputChange($event)">
 
-  <button (click)="destroySelf.emit(selfIndex); sp($event)">X</button>
-  <button
-    *ngIf="children"
-    (click)="switchCollapse(); sp($event)"> {{ isCollapsed ? '+' : '-'}}</button>
+  <div *ngIf="depth > 0" class="controls">
+    <button (click)="destroySelf.emit(selfIndex); sp($event)">
+      X
+    </button>
+    <button
+      *ngIf="children"
+      (click)="switchCollapse(); sp($event)"> {{ isCollapsed ? '+' : '-'}}
+    </button>
+  </div>
 
-  <ng-container *ngIf="!isCollapsed">
+  <ng-container *ngIf="!isCollapsed || depth === 0">
     <app-cell *ngFor        = 'let cell of children; let i = index'
               [name]        = 'cell.name'
               [children]    = 'cell.children'

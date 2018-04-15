@@ -1,9 +1,7 @@
-<div (click)="add()">
-  <app-cell *ngFor       = 'let cell of cells; let i = index'
-            [(name)]     = 'cell.name'
-            [(children)] = 'cell.children'
-            [depth]      = '0'
-            [selfIndex]  = 'i'></app-cell>
+<div>
+  <app-cell [(children)] = 'cells'
+            [depth]      = '0'>
+  </app-cell>
 </div>
 
 <pre>

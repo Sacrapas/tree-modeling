@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-
   public cells: any[] = [
   {
     id: 0,
@@ -50,10 +49,4 @@ export class AppComponent {
     id: 6
   }
 ];
-
-  public add(): void {
-    this.cells.push({
-      name: 'тест'
-    });
-  }
 }
