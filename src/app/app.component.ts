@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Tree} from '@app/models/tree';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  public cells: any[] = [
+  public cells: Tree = [
   {
     id: 0,
     name: 'сенсоры',
