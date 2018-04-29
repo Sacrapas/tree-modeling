@@ -68,4 +68,11 @@ export class TreeService {
     // })
     // .map((page: Page<Tree[]>) => page.items);
   }
+  public createTree(user: Tree, tree: Tree): Observable<any> {
+    return this.http.post('/trees', {user_id: user.id, tree});
+  }
+
+  public saveTree(tree: Tree): Observable<any> {
+    return this.http.post('/trees', tree);
+  }
 }

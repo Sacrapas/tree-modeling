@@ -17,6 +17,24 @@
   </mat-select>
 </mat-form-field>
 
+<button mat-button
+        color   = 'primary'
+        *ngIf   = 'user'
+        (click) = 'createTree()'>
+  Создать дерево для этого пользователя
+</button>
+
+<mat-form-field *ngIf="tree">
+  <input matInput placeholder="Название дерева" [(ngModel)]="tree.title">
+</mat-form-field>
+
+<button mat-button
+        color   = 'primary'
+        *ngIf   = 'tree'
+        (click) = 'saveTree()'>
+  Сохранить дерево
+</button>
+
 
 
 

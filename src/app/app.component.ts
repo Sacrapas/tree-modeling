@@ -34,7 +34,16 @@ export class AppComponent {
 
   public selectTree(treeIndex: number): void {
     this.tree = this.trees[treeIndex];
-    console.log(this.tree);
     this.commentsService.getByTreeID(this.tree.id).subscribe((comments: Comment[]) => this.comments = comments);
+  }
+
+  public createTree(): void {
+    this.tree = {
+      content: []
+    };
+  }
+
+  public saveTree(): void {
+    this.treesService.saveTree(this.tree).subscribe();
   }
 }
