@@ -11,8 +11,9 @@ export class TreeService {
 
   constructor(private readonly http: HttpClient) { }
 
+  /* /trees?user=10*/
   public getByUserID(userID: number): Observable<Tree[]> {
-      return this.http.get('/tree', {
+      return this.http.get('/trees', {
         params: new HttpParams({fromObject: {user: userID.toString()}})
       })
       .map((page: Page<Tree[]>) => page.items);

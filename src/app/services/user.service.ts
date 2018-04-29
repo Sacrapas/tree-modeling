@@ -11,7 +11,8 @@ export class UserService {
 
   constructor(private readonly http: HttpClient) { }
 
-  public getAll(): Observable<User[]> {
+    /* /users */
+    public getAll(): Observable<User[]> {
     return this.http.get('/users').map((page: Page<User[]>) => page.items);
   }
 
