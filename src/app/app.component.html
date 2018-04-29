@@ -1,9 +1,36 @@
-<div>
-  <app-cell [(children)] = 'cells'
+<mat-form-field>
+  <mat-select (selectionChange) = 'selectUser($event?.value)'
+              placeholder       = 'Пользователь'>
+    <mat-option *ngFor="let user of users; let i = index" [value]="i">
+      {{ user.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+<mat-form-field *ngIf="user">
+  <mat-select (selectionChange) = 'selectTree($event?.value)'
+              placeholder       = 'Дерево'>
+    <mat-option *ngFor="let tree of trees; let i = index" [value]="i">
+      {{ tree.title }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+
+
+<div *ngIf="tree?.content">
+  <app-cell [(children)] = 'tree.content'
             [depth]      = '0'>
   </app-cell>
 </div>
 
-<pre>
-  {{cells | json}}
+<pre *ngIf="tree">
+  {{tree.content | json}}
 </pre>
+
+
+<p *ngFor="let comment of comments">
+  <span><b>{{comment.author_name}}</b></span> <span>{{comment.content}}</span>
+</p>

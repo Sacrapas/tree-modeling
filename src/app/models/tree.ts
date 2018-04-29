@@ -1,3 +1,7 @@
 import {Cell} from '@app/models/cell';
 
-export type Tree = Cell[];
+export interface Tree {
+    id: number;
+    content: Cell[];
+    title?: string;
+}

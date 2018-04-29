@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
+import {UserService} from '@app/services/user.service';
+import {TreeService} from '@app/services/tree.service';
+import {CommentService} from '@app/services/comment.service';
+import {User} from '@app/models/user';
 import {Tree} from '@app/models/tree';
+import {Comment} from '@app/models/comment';
 
 @Component({
   selector: 'app-root',
@@ -8,46 +13,28 @@ import {Tree} from '@app/models/tree';
 })
 export class AppComponent {
 
-  public cells: Tree = [
-  {
-    id: 0,
-    name: 'сенсоры',
-    links: [3]
-  },
-  {
-    id: 1,
-    name: 'мозг',
-    children: [
-      {
-        id: 2,
-        name: 'память',
-        children: [
-          {
-            name: 'текущая',
-            id: 3,
-            links: [4]
-          },
-          {
-            name: 'долговременная',
-            id: 4,
-            links: [3]
-          }
-        ]
-      },
-      {
-        name: 'таблица приоритетов',
-        links: [5]
-      },
-      {
-        name: 'модуль достижения цели',
-        id: 5,
-        links: [6]
-      }
-    ]
-  },
-  {
-    name: 'кнопки',
-    id: 6
+  public users: User[];
+  public trees: Tree[];
+
+  public user: User;
+  public tree: Tree;
+  public comments: Comment[];
+
+  constructor(public readonly usersService:    UserService,
+              public readonly treesService:    TreeService,
+              public readonly commentsService: CommentService) {
+
+    this.usersService.getAll().subscribe((users: User[]) => this.users = users);
   }
-];
+
+  public selectUser(userIndex: number): void {
+    this.user = this.users[userIndex];
+    this.treesService.getByUserID(this.user.id).subscribe((trees: Tree[]) => this.trees = trees);
+  }
+
+  public selectTree(treeIndex: number): void {
+    this.tree = this.trees[treeIndex];
+    console.log(this.tree);
+    this.commentsService.getByTreeID(this.tree.id).subscribe((comments: Comment[]) => this.comments = comments);
+  }
 }
