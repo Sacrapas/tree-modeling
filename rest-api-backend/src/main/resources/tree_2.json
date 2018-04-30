@@ -1,0 +1,78 @@
+[
+  {
+    "id": 0,
+    "name": "hello",
+    "links": [
+      3
+    ],
+    "children": [
+      {
+        "name": "fsdf",
+        "children": [
+          {
+            "name": "r23r23g",
+            "children": [
+              {
+                "name": "djhhj2hjk3hrjkh2jk3"
+              },
+              {
+                "name": 3
+              }
+            ]
+          },
+          {
+            "name": 2,
+            "children": [
+              {
+                "name": 3
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "name": "sdfgg2",
+    "children": [
+      {
+        "id": 2,
+        "name": "память",
+        "children": [
+          {
+            "name": "текущая",
+            "id": 3,
+            "links": [
+              4
+            ]
+          },
+          {
+            "name": "долговременная",
+            "id": 4,
+            "links": [
+              3
+            ]
+          }
+        ]
+      },
+      {
+        "name": "таблица df",
+        "links": [
+          5
+        ]
+      },
+      {
+        "name": "модуль",
+        "id": 5,
+        "links": [
+          6
+        ]
+      }
+    ]
+  },
+  {
+    "name": "fsdf",
+    "id": 6
+  }
+]

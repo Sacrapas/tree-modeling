@@ -40,3 +40,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# spring backend ignore
+/rest-api-backend/.idea
+/rest-api-backend/target
